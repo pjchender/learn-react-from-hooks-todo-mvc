@@ -6,40 +6,62 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-function App() {
-  const [input, setInput] = useState('');
+const todosDefault = [
+  {
+    id: uuidv4(),
+    text: 'Learn React',
+  },
+  {
+    id: uuidv4(),
+    text: 'Become Frontend Developer',
+  },
+];
 
-  const todos = [
-    {
-      id: uuidv4(),
-      text: 'Learn React',
-    },
-    {
-      id: uuidv4(),
-      text: 'Become Frontend Developer',
-    },
-  ];
+function App() {
+  const [inputValue, setInputValue] = useState('');
+  const [todos, setTodos] = useState(todosDefault);
+
+  const handleAddTodo = () => {
+    if (inputValue.length === 0) {
+      return;
+    }
+
+    setTodos((prevTodos) => {
+      return [
+        ...prevTodos,
+        {
+          id: uuidv4(),
+          text: inputValue,
+        },
+      ];
+    });
+
+    setInputValue('');
+  };
 
   const handleChange = (e) => {
-    setInput(e.target.value);
+    setInputValue(e.target.value);
   };
 
   return (
     <div className="app">
       <Header />
 
-      <div className={clsx('add-todo', { active: input.length > 0 })}>
+      <div className={clsx('add-todo', { active: inputValue.length > 0 })}>
         <div className="add-todo-icon icon"></div>
         <div className="add-todo-input">
           <input
             type="text"
             placeholder="新增工作"
             onChange={handleChange}
-            value={input}
+            value={inputValue}
           />
         </div>
         <div className="add-todo-action">
-          <button className="btn-reset btn-add"> 新增 </button>
+          <button className="btn-reset btn-add" onClick={handleAddTodo}>
+            {' '}
+            新增{' '}
+          </button>
         </div>
       </div>
 
