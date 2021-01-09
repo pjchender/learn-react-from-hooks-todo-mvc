@@ -130,6 +130,10 @@ footer {
 
   &.edit {
     .task-item-body {
+      .task-item-body-input {
+        display: block;
+      }
+
       .task-item-body-text {
         display: none;
       }
@@ -146,6 +150,12 @@ footer {
     }
   }
 
+  .task-item-checked {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .task-item-body {
     font-weight: 300;
     padding: 8px 12px;
@@ -153,6 +163,7 @@ footer {
     display: flex;
 
     .task-item-body-input {
+      display: none;
       flex: 1;
       padding: 8px 0px;
       border: 0;
@@ -179,6 +190,38 @@ footer {
   }
 }
 
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  color: var(--major);
+  fill: var(--major);
+}
+
+.icon-circle {
+  background-image: url('./assets/images/check-circle.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &:hover {
+    transition: background-image 0.5s;
+    background-image: url('./assets/images/check-hover.svg');
+  }
+}
+
+.icon-checked {
+  background-image: url('./assets/images/check-active.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/**
+/* utilities
+**/
+
 .btn-reset {
   margin: 0;
   padding: 0;
@@ -188,42 +231,9 @@ footer {
   vertical-align: baseline;
   font-family: inherit;
   font-weight: inherit;
-  color: inherit;
   appearance: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   cursor: pointer;
   outline: 0;
-}
-
-.icon {
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-  color: var(--major);
-  fill: var(--major);
-}
-
-/**
-/* utilities
-**/
-
-.d-flex {
-  display: flex;
-}
-
-.d-inline-flex {
-  display: inline-flex;
-}
-
-.align-items-center {
-  align-items: center;
-}
-
-.justify-content-center {
-  justify-content: center;
-}
-
-.fw-300 {
-  font-weight: 300;
 }
