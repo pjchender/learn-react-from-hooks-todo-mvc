@@ -1,11 +1,12 @@
 import './App.scss';
 
+import Footer from './components/Footer';
+import Header from './components/Header';
+
 function App() {
   return (
     <div className="app">
-      <header>
-        <h3>Tasks</h3>
-      </header>
+      <Header />
 
       <div className="add-todo">
         <div className="add-todo-icon icon d-inline-flex align-items-center justify-content-center"></div>
@@ -97,9 +98,7 @@ function App() {
         </div>
       </div>
 
-      <footer>
-        <p>剩餘項目: 3</p>
-      </footer>
+      <Footer />
     </div>
   );
 }
