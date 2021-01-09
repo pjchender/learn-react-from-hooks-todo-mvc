@@ -140,13 +140,16 @@ footer {
     }
   }
 
-  &.destroyed {
+  &.done {
     .task-item-body {
       color: var(--gray);
       text-decoration: line-through;
     }
     .task-item-action {
       display: none;
+    }
+    .icon-checked {
+      background-image: url('./assets/images/check-active.svg');
     }
   }
 
@@ -201,7 +204,7 @@ footer {
   fill: var(--major);
 }
 
-.icon-circle {
+.icon-checked {
   background-image: url('./assets/images/check-circle.svg');
   background-position: center;
   background-repeat: no-repeat;
@@ -210,12 +213,6 @@ footer {
     transition: background-image 0.5s;
     background-image: url('./assets/images/check-hover.svg');
   }
-}
-
-.icon-checked {
-  background-image: url('./assets/images/check-active.svg');
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 /**

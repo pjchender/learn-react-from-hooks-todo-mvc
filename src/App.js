@@ -10,10 +10,12 @@ const todosDefault = [
   {
     id: uuidv4(),
     text: 'Learn React',
+    isDone: false,
   },
   {
     id: uuidv4(),
     text: 'Become Frontend Developer',
+    isDone: true,
   },
 ];
 
@@ -32,6 +34,7 @@ function App() {
         {
           id: uuidv4(),
           text: inputValue,
+          isDone: false,
         },
       ];
     });
@@ -65,6 +68,21 @@ function App() {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
+  const handleToggleIsDone = (id) => () => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => {
+        if (todo.id !== id) {
+          return todo;
+        } else {
+          return {
+            ...todo,
+            isDone: !todo.isDone,
+          };
+        }
+      })
+    );
+  };
+
   return (
     <div className="app">
       <Header />
@@ -91,9 +109,15 @@ function App() {
 
       <div className="todos">
         {todos.map((todo) => (
-          <div className="task-item">
+          <div
+            className={clsx('task-item', { done: todo.isDone })}
+            key={todo.id}
+          >
             <div className="task-item-checked">
-              <span className="icon icon-circle" />
+              <span
+                className="icon icon-checked"
+                onClick={handleToggleIsDone(todo.id)}
+              />
             </div>
             <div className="task-item-body">
               <span className="task-item-body-text">{todo.text}</span>
