@@ -2,6 +2,7 @@ import './App.scss';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
+import clsx from 'clsx';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -27,7 +28,7 @@ function App() {
     <div className="app">
       <Header />
 
-      <div className="add-todo">
+      <div className={clsx('add-todo', { active: input.length > 0 })}>
         <div className="add-todo-icon icon"></div>
         <div className="add-todo-input">
           <input
