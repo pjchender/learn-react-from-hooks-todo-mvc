@@ -70,9 +70,10 @@ function App() {
       <Header />
 
       <div className={clsx('add-todo', { active: inputValue.length > 0 })}>
-        <div className="add-todo-icon icon"></div>
+        <label className="add-todo-icon icon" htmlFor="add-todo-input"></label>
         <div className="add-todo-input">
           <input
+            id="add-todo-input"
             type="text"
             placeholder="新增工作"
             onChange={handleChange}
