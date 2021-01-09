@@ -61,6 +61,10 @@ function App() {
     setInputValue(e.target.value);
   };
 
+  const handleDelete = (id) => () => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <div className="app">
       <Header />
@@ -88,7 +92,7 @@ function App() {
         {todos.map((todo) => (
           <div className="task-item">
             <div className="task-item-checked">
-              <span className="icon icon-circle"></span>
+              <span className="icon icon-circle" />
             </div>
             <div className="task-item-body">
               <span className="task-item-body-text">{todo.text}</span>
@@ -99,7 +103,12 @@ function App() {
               />
             </div>
             <div className="task-item-action">
-              <button className="btn-reset btn-destroy icon"> </button>
+              <button
+                className="btn-reset btn-destroy icon"
+                onClick={handleDelete(todo.id)}
+              >
+                {' '}
+              </button>
             </div>
           </div>
         ))}
