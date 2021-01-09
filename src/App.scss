@@ -145,9 +145,7 @@ footer {
       color: var(--gray);
       text-decoration: line-through;
     }
-    .task-item-action {
-      display: none;
-    }
+
     .icon-checked {
       background-image: url('./assets/images/check-active.svg');
     }
@@ -166,6 +164,7 @@ footer {
     display: flex;
 
     .task-item-body-input {
+      user-select: none;
       display: none;
       flex: 1;
       padding: 8px 0px;

@@ -42,8 +42,12 @@ function App() {
     setInputValue('');
   };
 
-  const handleKeyDown = (event) => {
+  const handleKeyPress = (event) => {
     if (event.key !== 'Enter') {
+      return;
+    }
+
+    if (inputValue.length === 0) {
       return;
     }
 
@@ -95,7 +99,7 @@ function App() {
             type="text"
             placeholder="新增工作"
             onChange={handleChange}
-            onKeyDown={handleKeyDown}
+            onKeyPress={handleKeyPress}
             value={inputValue}
           />
         </div>
