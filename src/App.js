@@ -2,9 +2,12 @@ import './App.scss';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
+import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 function App() {
+  const [input, setInput] = useState('');
+
   const todos = [
     {
       id: uuidv4(),
@@ -15,6 +18,11 @@ function App() {
       text: 'Become Frontend Developer',
     },
   ];
+
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  };
+
   return (
     <div className="app">
       <Header />
@@ -22,7 +30,12 @@ function App() {
       <div className="add-todo">
         <div className="add-todo-icon icon"></div>
         <div className="add-todo-input">
-          <input type="text" placeholder="新增工作" />
+          <input
+            type="text"
+            placeholder="新增工作"
+            onChange={handleChange}
+            value={input}
+          />
         </div>
         <div className="add-todo-action">
           <button className="btn-reset btn-add"> 新增 </button>
