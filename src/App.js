@@ -23,6 +23,8 @@ function App() {
   const [inputValue, setInputValue] = useState('');
   const [todos, setTodos] = useState(todosDefault);
 
+  const numOfTodos = todos.filter((todo) => !todo.isDone).length;
+
   const handleAddTodo = () => {
     if (inputValue.length === 0) {
       return;
@@ -143,7 +145,7 @@ function App() {
         ))}
       </div>
 
-      <Footer />
+      <Footer numOfTodos={numOfTodos} />
     </div>
   );
 }

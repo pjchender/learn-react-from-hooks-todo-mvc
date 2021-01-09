@@ -67,6 +67,7 @@ footer {
     display: flex;
     align-items: center;
     flex: 1;
+    user-select: none;
 
     input {
       flex: 1;

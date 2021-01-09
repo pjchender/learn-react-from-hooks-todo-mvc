@@ -1,7 +1,7 @@
-const Footer = () => {
+const Footer = ({ numOfTodos }) => {
   return (
     <footer>
-      <p>剩餘項目: 3</p>
+      <p>剩餘項目數：{numOfTodos}</p>
     </footer>
   );
 };
