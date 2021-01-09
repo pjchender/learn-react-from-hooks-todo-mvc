@@ -39,6 +39,24 @@ function App() {
     setInputValue('');
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key !== 'Enter') {
+      return;
+    }
+
+    setTodos((prevTodos) => {
+      return [
+        ...prevTodos,
+        {
+          id: uuidv4(),
+          text: inputValue,
+        },
+      ];
+    });
+
+    setInputValue('');
+  };
+
   const handleChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -54,6 +72,7 @@ function App() {
             type="text"
             placeholder="新增工作"
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
             value={inputValue}
           />
         </div>
