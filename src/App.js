@@ -10,12 +10,12 @@ import { v4 as uuidv4 } from 'uuid';
 const todosDefault = [
   {
     id: uuidv4(),
-    text: 'Learn React',
+    title: 'Learn React',
     isDone: false,
   },
   {
     id: uuidv4(),
-    text: 'Become Frontend Developer',
+    title: 'Become Frontend Developer',
     isDone: true,
   },
 ];
@@ -36,7 +36,7 @@ function App() {
         ...prevTodos,
         {
           id: uuidv4(),
-          text: inputValue,
+          title: inputValue,
           isDone: false,
         },
       ];
@@ -59,7 +59,7 @@ function App() {
         ...prevTodos,
         {
           id: uuidv4(),
-          text: inputValue,
+          title: inputValue,
         },
       ];
     });
