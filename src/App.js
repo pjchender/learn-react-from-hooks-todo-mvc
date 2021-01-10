@@ -1,9 +1,9 @@
 import './App.scss';
 
+import AddTodo from './components/AddTodo';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Todos from './components/Todos';
-import clsx from 'clsx';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -94,25 +94,12 @@ function App() {
     <div className="app">
       <Header />
 
-      <div className={clsx('add-todo', { active: inputValue.length > 0 })}>
-        <label className="add-todo-icon icon" htmlFor="add-todo-input"></label>
-        <div className="add-todo-input">
-          <input
-            id="add-todo-input"
-            type="text"
-            placeholder="新增工作"
-            onChange={handleChange}
-            onKeyPress={handleKeyPress}
-            value={inputValue}
-          />
-        </div>
-        <div className="add-todo-action">
-          <button className="btn-reset btn-add" onClick={handleAddTodo}>
-            {' '}
-            新增{' '}
-          </button>
-        </div>
-      </div>
+      <AddTodo
+        inputValue={inputValue}
+        handleChange={handleChange}
+        handleKeyPress={handleKeyPress}
+        handleAddTodo={handleAddTodo}
+      />
 
       <Todos
         todos={todos}
