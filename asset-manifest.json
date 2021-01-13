@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.998b0048.chunk.css",
+    "main.js": "/static/js/main.b0974269.chunk.js",
+    "main.js.map": "/static/js/main.b0974269.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.9f18576c.js",
+    "runtime-main.js.map": "/static/js/runtime-main.9f18576c.js.map",
+    "static/js/2.2f208007.chunk.js": "/static/js/2.2f208007.chunk.js",
+    "static/js/2.2f208007.chunk.js.map": "/static/js/2.2f208007.chunk.js.map",
+    "static/js/3.811647e6.chunk.js": "/static/js/3.811647e6.chunk.js",
+    "static/js/3.811647e6.chunk.js.map": "/static/js/3.811647e6.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.998b0048.chunk.css.map": "/static/css/main.998b0048.chunk.css.map",
+    "static/js/2.2f208007.chunk.js.LICENSE.txt": "/static/js/2.2f208007.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/static/media/check-hover.5e00062b.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9f18576c.js",
+    "static/js/2.2f208007.chunk.js",
+    "static/css/main.998b0048.chunk.css",
+    "static/js/main.b0974269.chunk.js"
+  ]
+}
