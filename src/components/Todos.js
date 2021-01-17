@@ -1,32 +1,15 @@
-import clsx from 'clsx';
+import TodoItem from './TodoItem';
 
 const Todos = ({ todos, handleToggleIsDone, handleDelete }) => (
   <div className="todos">
+    {console.log('[render] todos')}
     {todos.map((todo) => (
-      <div className={clsx('task-item', { done: todo.isDone })} key={todo.id}>
-        <div className="task-item-checked">
-          <span
-            className="icon icon-checked"
-            onClick={handleToggleIsDone(todo.id)}
-          />
-        </div>
-        <div className="task-item-body">
-          <span className="task-item-body-text">{todo.title}</span>
-          <input
-            className="task-item-body-input"
-            type="text"
-            placeholder="新增工作"
-          />
-        </div>
-        <div className="task-item-action">
-          <button
-            className="btn-reset btn-destroy icon"
-            onClick={handleDelete(todo.id)}
-          >
-            {' '}
-          </button>
-        </div>
-      </div>
+      <TodoItem
+        key={todo.id}
+        todo={todo}
+        handleToggleIsDone={handleToggleIsDone}
+        handleDelete={handleDelete}
+      />
     ))}
   </div>
 );

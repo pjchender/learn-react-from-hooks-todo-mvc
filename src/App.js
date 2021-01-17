@@ -90,6 +90,7 @@ function App() {
     );
   };
 
+  console.log('[render] app');
   return (
     <div className="app">
       <Header />
