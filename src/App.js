@@ -25,11 +25,16 @@ function App() {
     const data = await createTodo({
       title: inputValue,
       isDone: false,
-      isEdit: false,
     });
 
     setTodos((prevTodos) => {
-      return [...prevTodos, data];
+      return [
+        ...prevTodos,
+        {
+          ...data,
+          isEdit: false,
+        },
+      ];
     });
 
     setInputValue('');
@@ -47,11 +52,16 @@ function App() {
     const data = await createTodo({
       title: inputValue,
       isDone: false,
-      isEdit: false,
     });
 
     setTodos((prevTodos) => {
-      return [...prevTodos, data];
+      return [
+        ...prevTodos,
+        {
+          ...data,
+          isEdit: false,
+        },
+      ];
     });
 
     setInputValue('');
@@ -89,7 +99,6 @@ function App() {
     await patchTodo({
       id,
       title,
-      isEdit: false,
     });
 
     setTodos((prevTodos) =>
@@ -115,8 +124,14 @@ function App() {
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const data = await getTodos();
-      setTodos(data);
+      const todos = await getTodos();
+
+      setTodos(
+        todos.map((todo) => ({
+          ...todo,
+          isEdit: false,
+        }))
+      );
     };
 
     fetchTodos();

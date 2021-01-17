@@ -5,7 +5,7 @@ export const getTodos = () => {
 };
 
 export const createTodo = async (payload) => {
-  const { title, isDone, isEdit } = payload;
+  const { title, isDone } = payload;
   const res = await fetch(`${baseURL}/todos`, {
     method: 'POST',
     headers: {
@@ -14,7 +14,6 @@ export const createTodo = async (payload) => {
     body: JSON.stringify({
       title,
       isDone,
-      isEdit,
     }),
   });
 
@@ -30,7 +29,7 @@ export const deleteTodo = async (id) => {
 };
 
 export const patchTodo = async (payload) => {
-  const { id, title, isDone, isEdit } = payload;
+  const { id, title, isDone } = payload;
 
   const res = await fetch(`${baseURL}/todos/${id}`, {
     method: 'PATCH',
@@ -40,7 +39,6 @@ export const patchTodo = async (payload) => {
     body: JSON.stringify({
       title,
       isDone,
-      isEdit,
     }),
   });
 

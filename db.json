@@ -1,15 +1,8 @@
 {
   "todos": [
     {
-      "title": "學習使用 json-server 可以吧",
-      "isDone": true,
-      "isEdit": false,
-      "id": 1
-    },
-    {
-      "title": "學習 useEffect 的基本概念，可以",
+      "title": "Learn React from Hooks",
       "isDone": false,
-      "isEdit": false,
       "id": 2
     }
   ]
