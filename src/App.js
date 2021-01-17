@@ -10,13 +10,21 @@ import { v4 as uuidv4 } from 'uuid';
 const todosDefault = [
   {
     id: uuidv4(),
-    title: 'Learn React',
+    title: '編輯 Todo 項目',
     isDone: false,
+    isEdit: false,
   },
   {
     id: uuidv4(),
-    title: 'Become Frontend Developer',
-    isDone: true,
+    title: '了解 useEffect 的基本使用',
+    isDone: false,
+    isEdit: false,
+  },
+  {
+    id: uuidv4(),
+    title: '自動 focus（useRef）',
+    isDone: false,
+    isEdit: false,
   },
 ];
 
@@ -38,6 +46,7 @@ function App() {
           id: uuidv4(),
           title: inputValue,
           isDone: false,
+          isEdit: false,
         },
       ];
     });
@@ -90,6 +99,28 @@ function App() {
     );
   };
 
+  const updateIsEdit = ({ id, isEdit }) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => {
+        if (todo.id !== id) {
+          return todo;
+        }
+        return { ...todo, isEdit };
+      })
+    );
+  };
+
+  const handleSave = ({ id, title }) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => {
+        if (todo.id !== id) {
+          return todo;
+        }
+        return { ...todo, title, isEdit: false };
+      })
+    );
+  };
+
   console.log('[render] app');
   return (
     <div className="app">
@@ -105,7 +136,9 @@ function App() {
       <Todos
         todos={todos}
         handleDelete={handleDelete}
+        handleSave={handleSave}
         handleToggleIsDone={handleToggleIsDone}
+        updateIsEdit={updateIsEdit}
       />
 
       <Footer numOfTodos={numOfTodos} />
