@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/learn-react-from-hooks-todo-mvc/static/css/main.2b4a96be.chunk.css",
-    "main.js": "/learn-react-from-hooks-todo-mvc/static/js/main.b0974269.chunk.js",
-    "main.js.map": "/learn-react-from-hooks-todo-mvc/static/js/main.b0974269.chunk.js.map",
-    "runtime-main.js": "/learn-react-from-hooks-todo-mvc/static/js/runtime-main.4e3a8b05.js",
-    "runtime-main.js.map": "/learn-react-from-hooks-todo-mvc/static/js/runtime-main.4e3a8b05.js.map",
-    "static/js/2.2f208007.chunk.js": "/learn-react-from-hooks-todo-mvc/static/js/2.2f208007.chunk.js",
-    "static/js/2.2f208007.chunk.js.map": "/learn-react-from-hooks-todo-mvc/static/js/2.2f208007.chunk.js.map",
-    "static/js/3.811647e6.chunk.js": "/learn-react-from-hooks-todo-mvc/static/js/3.811647e6.chunk.js",
-    "static/js/3.811647e6.chunk.js.map": "/learn-react-from-hooks-todo-mvc/static/js/3.811647e6.chunk.js.map",
+    "main.css": "/learn-react-from-hooks-todo-mvc/static/css/main.829ce660.chunk.css",
+    "main.js": "/learn-react-from-hooks-todo-mvc/static/js/main.1105d98e.chunk.js",
+    "main.js.map": "/learn-react-from-hooks-todo-mvc/static/js/main.1105d98e.chunk.js.map",
+    "runtime-main.js": "/learn-react-from-hooks-todo-mvc/static/js/runtime-main.0b807480.js",
+    "runtime-main.js.map": "/learn-react-from-hooks-todo-mvc/static/js/runtime-main.0b807480.js.map",
+    "static/js/2.9f46e788.chunk.js": "/learn-react-from-hooks-todo-mvc/static/js/2.9f46e788.chunk.js",
+    "static/js/2.9f46e788.chunk.js.map": "/learn-react-from-hooks-todo-mvc/static/js/2.9f46e788.chunk.js.map",
+    "static/js/3.1e70e518.chunk.js": "/learn-react-from-hooks-todo-mvc/static/js/3.1e70e518.chunk.js",
+    "static/js/3.1e70e518.chunk.js.map": "/learn-react-from-hooks-todo-mvc/static/js/3.1e70e518.chunk.js.map",
     "index.html": "/learn-react-from-hooks-todo-mvc/index.html",
-    "static/css/main.2b4a96be.chunk.css.map": "/learn-react-from-hooks-todo-mvc/static/css/main.2b4a96be.chunk.css.map",
-    "static/js/2.2f208007.chunk.js.LICENSE.txt": "/learn-react-from-hooks-todo-mvc/static/js/2.2f208007.chunk.js.LICENSE.txt",
+    "static/css/main.829ce660.chunk.css.map": "/learn-react-from-hooks-todo-mvc/static/css/main.829ce660.chunk.css.map",
+    "static/js/2.9f46e788.chunk.js.LICENSE.txt": "/learn-react-from-hooks-todo-mvc/static/js/2.9f46e788.chunk.js.LICENSE.txt",
     "static/media/App.scss": "/learn-react-from-hooks-todo-mvc/static/media/check-hover.5e00062b.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.4e3a8b05.js",
-    "static/js/2.2f208007.chunk.js",
-    "static/css/main.2b4a96be.chunk.css",
-    "static/js/main.b0974269.chunk.js"
+    "static/js/runtime-main.0b807480.js",
+    "static/js/2.9f46e788.chunk.js",
+    "static/css/main.829ce660.chunk.css",
+    "static/js/main.1105d98e.chunk.js"
   ]
 }
