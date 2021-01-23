@@ -7,7 +7,6 @@ const AddTodo = ({
   handleAddTodo,
 }) => (
   <div className={clsx('add-todo', { active: inputValue.length > 0 })}>
-    {console.log('[render] addTodo')}
     <label className="add-todo-icon icon" htmlFor="add-todo-input"></label>
     <div className="add-todo-input">
       <input

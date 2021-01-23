@@ -8,7 +8,6 @@ const Todos = ({
   updateIsEdit,
 }) => (
   <div className="todos">
-    {console.log('[render] todos')}
     {todos.map((todo) => (
       <TodoItem
         key={todo.id}

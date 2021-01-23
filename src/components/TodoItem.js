@@ -41,8 +41,6 @@ const TodoItem = ({
     }
   };
 
-  console.log('[render] TodoItem');
-
   return (
     <div
       className={clsx('task-item', {
