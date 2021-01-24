@@ -1,10 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 // NOTICE: 因為 window.fbAsyncInit 只有在第一次載入 SDK 時會被呼叫，
 // 因此 useFacebookLogin 只能被呼叫一次
 const useFacebookLogin = ({ appId, cookie, xfbml, version }) => {
-  const [isFBInitialized, setIsFBInitialized] = useState(false);
   const [response, setResponse] = useState();
+
+  // 取得使用者登入狀態
+  const refreshLoginStatus = useCallback(() => {
+    window.FB.getLoginStatus(function (response) {
+      console.log('[refreshLoginStatus]', response);
+      setResponse(response);
+    });
+  }, []);
 
   // 載入 Facebook SDK 並完成 init 的動作
   useEffect(() => {
@@ -19,7 +26,7 @@ const useFacebookLogin = ({ appId, cookie, xfbml, version }) => {
       });
 
       console.log('[fbAsyncInit] after window.FB.init');
-      setIsFBInitialized(true);
+      refreshLoginStatus();
       window.FB.AppEvents.logPageView();
     };
 
@@ -35,25 +42,10 @@ const useFacebookLogin = ({ appId, cookie, xfbml, version }) => {
       js.src = 'https://connect.facebook.net/en_US/sdk.js';
       fjs.parentNode.insertBefore(js, fjs);
     })(document, 'script', 'facebook-jssdk');
-  }, [appId, cookie, xfbml, version]);
-
-  // 取得使用者登入狀態
-  useEffect(() => {
-    if (!isFBInitialized) {
-      return;
-    }
-    window.FB.getLoginStatus(function (response) {
-      console.log('[getLoginStatus]', response);
-      setResponse(response);
-    });
-  }, [isFBInitialized]);
+  }, [appId, cookie, xfbml, version, refreshLoginStatus]);
 
   // 使用者點擊登入
   const handleFBLogin = () => {
-    if (!isFBInitialized) {
-      return;
-    }
-
     window.FB.login(
       function (response) {
         console.log('handleFBLogin', response);
@@ -65,28 +57,13 @@ const useFacebookLogin = ({ appId, cookie, xfbml, version }) => {
 
   // 使用者點擊登出
   const handleFBLogout = () => {
-    // FB SDK 已經初始化
-    if (!isFBInitialized) {
-      return;
-    }
-
-    // 已經確認使用者登入狀態
-    if (!response) {
-      return;
-    }
-
-    // 使用者尚未登入
-    if (response?.status !== 'connected') {
-      return;
-    }
-
     window.FB.logout(function (response) {
       console.log('handleFBLogout', response);
       setResponse(response);
     });
   };
 
-  return [response, handleFBLogin, handleFBLogout];
+  return [response, handleFBLogin, handleFBLogout, refreshLoginStatus];
 };
 
 export default useFacebookLogin;

@@ -15,21 +15,6 @@ function App() {
     version: process.env.REACT_APP_FB_APP_VERSION,
   });
 
-  // 呼叫 Graph API 取得使用者資料
-  useEffect(() => {
-    if (!response) {
-      return;
-    }
-
-    if (response?.status !== 'connected') {
-      return;
-    }
-
-    window.FB.api('/me', 'GET', { fields: 'name,email' }, function (response) {
-      console.log('[/me]', response);
-    });
-  }, [response]);
-
   // 判斷使用者有無權限檢視頁面若沒有權限則導回登入頁
   useEffect(() => {
     // 已經確認使用者登入狀態
@@ -52,7 +37,7 @@ function App() {
   }, [currentPage, response]);
 
   if (!response) {
-    return <></>;
+    return <div className="app">Loading</div>;
   }
 
   return (
