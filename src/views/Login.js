@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import AuthContext from 'contexts/AuthContext';
+import { useContext } from 'react';
 
 const Container = styled.div`
   display: flex;
@@ -28,11 +30,12 @@ const Button = styled.button`
   }
 `;
 
-const Login = ({ handleFBLogin }) => {
+const Login = () => {
+  const auth = useContext(AuthContext);
   return (
     <Container>
       <Title>登入 Todo</Title>
-      <Button className="btn-reset" onClick={handleFBLogin}>
+      <Button className="btn-reset" onClick={auth.handleFBLogin}>
         {' '}
         使用 Facebook 登入{' '}
       </Button>

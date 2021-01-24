@@ -4,6 +4,7 @@ import TodoApp from 'views/TodoApp';
 import Login from 'views/Login';
 import { useState, useEffect } from 'react';
 import useFacebookLogin from 'hooks/useFacebookLogin';
+import AuthContext from 'contexts/AuthContext';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('Login');
@@ -50,11 +51,24 @@ function App() {
     console.log('不做事');
   }, [currentPage, response]);
 
+  if (!response) {
+    return <></>;
+  }
+
   return (
-    <div className="app">
-      {currentPage === 'Login' && <Login handleFBLogin={handleFBLogin} />}
-      {currentPage === 'TodoApp' && <TodoApp handleFBLogout={handleFBLogout} />}
-    </div>
+    <AuthContext.Provider
+      value={{
+        status: response.status,
+        authResponse: response.authResponse,
+        handleFBLogin,
+        handleFBLogout,
+      }}
+    >
+      <div className="app">
+        {currentPage === 'Login' && <Login />}
+        {currentPage === 'TodoApp' && <TodoApp />}
+      </div>
+    </AuthContext.Provider>
   );
 }
 

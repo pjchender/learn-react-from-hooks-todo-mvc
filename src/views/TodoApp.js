@@ -7,7 +7,7 @@ import Todos from 'components/Todos';
 import { useState, useEffect } from 'react';
 import { getTodos, createTodo, deleteTodo, patchTodo } from 'api/todos';
 
-const TodoApp = ({ handleFBLogout }) => {
+const TodoApp = () => {
   const [inputValue, setInputValue] = useState('');
   const [todos, setTodos] = useState([]);
 
@@ -153,7 +153,7 @@ const TodoApp = ({ handleFBLogout }) => {
         handleToggleIsDone={handleToggleIsDone}
         updateIsEdit={updateIsEdit}
       />
-      <Footer numOfTodos={numOfTodos} handleFBLogout={handleFBLogout} />
+      <Footer numOfTodos={numOfTodos} />
     </div>
   );
 };

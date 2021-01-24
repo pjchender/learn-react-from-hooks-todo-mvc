@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { useContext } from 'react';
+import AuthContext from 'contexts/AuthContext';
 
 const Container = styled.footer`
   display: flex;
@@ -14,13 +16,17 @@ const LogoutBtn = styled.button`
   }
 `;
 
-const Footer = ({ numOfTodos, handleFBLogout }) => (
-  <Container>
-    <p>剩餘項目數：{numOfTodos}</p>
-    <LogoutBtn className="btn-reset" onClick={handleFBLogout}>
-      登出
-    </LogoutBtn>
-  </Container>
-);
+const Footer = ({ numOfTodos }) => {
+  const auth = useContext(AuthContext);
+
+  return (
+    <Container>
+      <p>剩餘項目數：{numOfTodos}</p>
+      <LogoutBtn className="btn-reset" onClick={auth.handleFBLogout}>
+        登出
+      </LogoutBtn>
+    </Container>
+  );
+};
 
 export default Footer;
