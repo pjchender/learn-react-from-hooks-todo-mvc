@@ -1,17 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
-// NOTICE: 因為 window.fbAsyncInit 只有在第一次載入 SDK 時會被呼叫，
-// 因此 useFacebookLogin 只能被呼叫一次
 const useFacebookLogin = ({ appId, cookie, xfbml, version }) => {
   const [response, setResponse] = useState();
-
-  // 取得使用者登入狀態
-  const refreshLoginStatus = useCallback(() => {
-    window.FB.getLoginStatus(function (response) {
-      console.log('[refreshLoginStatus]', response);
-      setResponse(response);
-    });
-  }, []);
 
   // 載入 Facebook SDK 並完成 init 的動作
   useEffect(() => {
@@ -26,7 +16,13 @@ const useFacebookLogin = ({ appId, cookie, xfbml, version }) => {
       });
 
       console.log('[fbAsyncInit] after window.FB.init');
-      refreshLoginStatus();
+
+      // 取得使用者登入狀態
+      window.FB.getLoginStatus(function (response) {
+        console.log('[getLoginStatus]', response);
+        setResponse(response);
+      });
+
       window.FB.AppEvents.logPageView();
     };
 
@@ -42,7 +38,7 @@ const useFacebookLogin = ({ appId, cookie, xfbml, version }) => {
       js.src = 'https://connect.facebook.net/en_US/sdk.js';
       fjs.parentNode.insertBefore(js, fjs);
     })(document, 'script', 'facebook-jssdk');
-  }, [appId, cookie, xfbml, version, refreshLoginStatus]);
+  }, [appId, cookie, xfbml, version]);
 
   // 使用者點擊登入
   const handleFBLogin = () => {
@@ -63,7 +59,7 @@ const useFacebookLogin = ({ appId, cookie, xfbml, version }) => {
     });
   };
 
-  return [response, handleFBLogin, handleFBLogout, refreshLoginStatus];
+  return [response, handleFBLogin, handleFBLogout];
 };
 
 export default useFacebookLogin;
