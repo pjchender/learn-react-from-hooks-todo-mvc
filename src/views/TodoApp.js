@@ -7,7 +7,7 @@ import Todos from 'components/Todos';
 import { useState, useEffect } from 'react';
 import { getTodos, createTodo, deleteTodo, patchTodo } from 'api/todos';
 
-function TodoApp() {
+const TodoApp = ({ handleFBLogout }) => {
   const [inputValue, setInputValue] = useState('');
   const [todos, setTodos] = useState([]);
 
@@ -140,14 +140,12 @@ function TodoApp() {
   return (
     <div>
       <Header />
-
       <AddTodo
         inputValue={inputValue}
         handleChange={handleChange}
         handleKeyPress={handleKeyPress}
         handleAddTodo={handleAddTodo}
       />
-
       <Todos
         todos={todos}
         handleDelete={handleDelete}
@@ -155,10 +153,9 @@ function TodoApp() {
         handleToggleIsDone={handleToggleIsDone}
         updateIsEdit={updateIsEdit}
       />
-
-      <Footer numOfTodos={numOfTodos} />
+      <Footer numOfTodos={numOfTodos} handleFBLogout={handleFBLogout} />
     </div>
   );
-}
+};
 
 export default TodoApp;

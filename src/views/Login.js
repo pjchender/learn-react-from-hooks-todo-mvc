@@ -28,11 +28,14 @@ const Button = styled.button`
   }
 `;
 
-const Login = () => {
+const Login = ({ handleFBLogin }) => {
   return (
     <Container>
       <Title>登入 Todo</Title>
-      <Button className="btn-reset"> 使用 Facebook 登入 </Button>
+      <Button className="btn-reset" onClick={handleFBLogin}>
+        {' '}
+        使用 Facebook 登入{' '}
+      </Button>
     </Container>
   );
 };

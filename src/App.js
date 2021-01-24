@@ -12,6 +12,7 @@ function App() {
   useEffect(() => {
     // SDK 載入完成時會立即呼叫 fbAsyncInit
     window.fbAsyncInit = function () {
+      // 初始化 Facebook SDK
       window.FB.init({
         appId: process.env.REACT_APP_FB_APP_ID,
         cookie: true,
@@ -24,7 +25,7 @@ function App() {
       window.FB.AppEvents.logPageView();
     };
 
-    // load facebook sdk script
+    // 載入 Facebook SDK
     (function (d, s, id) {
       var js,
         fjs = d.getElementsByTagName(s)[0];
@@ -68,6 +69,7 @@ function App() {
     });
   }, [isFBInitialized, authResponse]);
 
+  // 判斷使用者有無權限檢視頁面若沒有權限則導回登入頁
   useEffect(() => {
     // FB 需已經初始化
     if (!isFBInitialized) {
@@ -79,13 +81,19 @@ function App() {
       return;
     }
 
-    if (authResponse?.status !== 'connected') {
+    if (currentPage !== 'Login' && authResponse?.status !== 'connected') {
       console.log('使用者未登入，導回登入頁');
+      setCurrentPage('Login');
       return;
     }
 
-    console.log('合法的使用者');
-  }, [isFBInitialized, authResponse]);
+    if (currentPage === 'Login' && authResponse?.status === 'connected') {
+      console.log('登入並轉址');
+      setCurrentPage('TodoApp');
+    }
+
+    console.log('不做事');
+  }, [currentPage, isFBInitialized, authResponse]);
 
   // 使用者點擊登入
   const handleFBLogin = () => {
@@ -102,7 +110,7 @@ function App() {
     );
   };
 
-  // 使用者登出
+  // 使用者點擊登出
   const handleFBLogout = () => {
     // FB SDK 已經初始化
     if (!isFBInitialized) {
@@ -127,11 +135,8 @@ function App() {
 
   return (
     <div className="app">
-      {currentPage === 'Login' && <Login />}
-      {currentPage === 'TodoApp' && <TodoApp />}
-
-      {/* <button onClick={handleFBLogin}>Facebook Login</button>
-      <button onClick={handleFBLogout}>Facebook Logout</button> */}
+      {currentPage === 'Login' && <Login handleFBLogin={handleFBLogin} />}
+      {currentPage === 'TodoApp' && <TodoApp handleFBLogout={handleFBLogout} />}
     </div>
   );
 }
