@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import AuthContext from 'contexts/AuthContext';
 import { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -32,6 +33,11 @@ const Button = styled.button`
 
 const Login = () => {
   const auth = useContext(AuthContext);
+
+  if (auth.status === 'connected') {
+    return <Redirect to="/todos" />;
+  }
+
   return (
     <Container>
       <Title>登入 Todo</Title>

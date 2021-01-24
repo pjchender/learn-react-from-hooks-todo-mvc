@@ -15,11 +15,6 @@ const TodoItem = ({
   };
 
   const handleKeyDown = (event) => {
-    console.log({
-      keyCode: event.keyCode,
-      key: event.key,
-    });
-
     // keyCode 13 一定是 enter，但 enter 的 keyCode 不一定是 13
     if (event.keyCode === 13 && tempTodo.length !== 0) {
       handleSave({
