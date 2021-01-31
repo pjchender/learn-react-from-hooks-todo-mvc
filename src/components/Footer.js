@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import AuthContext from 'contexts/AuthContext';
+import { useContext } from 'react';
 
 const Container = styled.footer`
   display: flex;
@@ -14,7 +16,8 @@ const LogoutBtn = styled.button`
   }
 `;
 
-const Footer = ({ numOfTodos, handleFBLogout }) => {
+const Footer = ({ numOfTodos }) => {
+  const { handleFBLogout } = useContext(AuthContext);
   return (
     <Container>
       <p>剩餘項目數：{numOfTodos}</p>

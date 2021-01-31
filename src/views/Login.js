@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
+import AuthContext from 'contexts/AuthContext';
+import { useContext } from 'react';
 
 const Container = styled.div`
   display: flex;
@@ -29,7 +31,9 @@ const Button = styled.button`
   }
 `;
 
-const Login = ({ status, handleFBLogin }) => {
+const Login = () => {
+  const { status, handleFBLogin } = useContext(AuthContext);
+
   if (status === 'connected') {
     return <Redirect to="/todos" />;
   }

@@ -4,6 +4,7 @@ import TodoApp from 'views/TodoApp';
 import Login from 'views/Login';
 import { useState, useEffect } from 'react';
 import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
+import AuthContext from './contexts/AuthContext';
 
 const App = () => {
   const [response, setResponse] = useState();
@@ -72,23 +73,32 @@ const App = () => {
   }
 
   return (
-    <div className="app">
-      <Switch>
-        <Route exact path="/">
-          {response.status === 'connected' ? (
-            <Redirect to="/todos" />
-          ) : (
-            <Redirect to="/login" />
-          )}
-        </Route>
-        <Route path="/login">
-          <Login handleFBLogin={handleFBLogin} status={response.status} />
-        </Route>
-        <Route path="/todos">
-          <TodoApp handleFBLogout={handleFBLogout} />
-        </Route>
-      </Switch>
-    </div>
+    <AuthContext.Provider
+      value={{
+        status: response.status,
+        authResponse: response.authResponse,
+        handleFBLogin,
+        handleFBLogout,
+      }}
+    >
+      <div className="app">
+        <Switch>
+          <Route exact path="/">
+            {response.status === 'connected' ? (
+              <Redirect to="/todos" />
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/todos">
+            <TodoApp />
+          </Route>
+        </Switch>
+      </div>
+    </AuthContext.Provider>
   );
 };
 
