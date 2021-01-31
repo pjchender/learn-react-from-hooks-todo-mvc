@@ -2,12 +2,12 @@
   "todos": [
     {
       "title": "Learn react-router",
-      "isDone": false,
+      "isDone": true,
       "id": 1
     },
     {
       "title": "Learn Facebook Login",
-      "isDone": false,
+      "isDone": true,
       "id": 2
     },
     {
