@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import AuthContext from 'contexts/AuthContext';
-import { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 
 const Container = styled.div`
@@ -31,17 +29,15 @@ const Button = styled.button`
   }
 `;
 
-const Login = () => {
-  const auth = useContext(AuthContext);
-
-  if (auth.status === 'connected') {
+const Login = ({ status, handleFBLogin }) => {
+  if (status === 'connected') {
     return <Redirect to="/todos" />;
   }
 
   return (
     <Container>
       <Title>登入 Todo</Title>
-      <Button className="btn-reset" onClick={auth.handleFBLogin}>
+      <Button className="btn-reset" onClick={handleFBLogin}>
         {' '}
         使用 Facebook 登入{' '}
       </Button>
