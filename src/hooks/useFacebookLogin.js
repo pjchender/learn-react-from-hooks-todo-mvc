@@ -19,6 +19,10 @@ const useFacebookLogin = () => {
       // 取得使用者登入狀態
       window.FB.getLoginStatus(function (response) {
         console.log('[refreshLoginStatus]', response);
+        localStorage.setItem(
+          'facebookClientToken',
+          response?.authResponse?.accessToken
+        );
         setResponse(response);
       });
 
@@ -44,6 +48,10 @@ const useFacebookLogin = () => {
       function (response) {
         console.log('handleFBLogin', response);
         setResponse(response);
+        localStorage.setItem(
+          'facebookClientToken',
+          response?.authResponse?.accessToken
+        );
       },
       { scope: 'public_profile,email' }
     );
@@ -52,6 +60,10 @@ const useFacebookLogin = () => {
   const handleFBLogout = () => {
     window.FB.logout(function (response) {
       console.log('handleFBLogout', response);
+      localStorage.setItem(
+        'facebookClientToken',
+        response?.authResponse?.accessToken
+      );
       setResponse(response);
     });
   };

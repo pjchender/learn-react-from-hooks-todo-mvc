@@ -77,6 +77,7 @@ const TodoApp = () => {
     const currentTodo = todos.find((t) => t.id === id);
     await patchTodo({
       id,
+      title: currentTodo.title,
       isDone: !currentTodo.isDone,
     });
 
@@ -124,14 +125,18 @@ const TodoApp = () => {
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const todos = await getTodos();
+      try {
+        const todos = await getTodos();
 
-      setTodos(
-        todos.map((todo) => ({
-          ...todo,
-          isEdit: false,
-        }))
-      );
+        setTodos(
+          todos.map((todo) => ({
+            ...todo,
+            isEdit: false,
+          }))
+        );
+      } catch (error) {
+        console.log('fetchTodos error', error);
+      }
     };
 
     fetchTodos();

@@ -20,6 +20,7 @@ const TodoItem = ({
       handleSave({
         id: todo.id,
         title: tempTodo,
+        isDone: todo.isDone,
       });
     }
 
