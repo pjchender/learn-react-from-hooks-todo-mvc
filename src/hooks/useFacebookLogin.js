@@ -18,7 +18,7 @@ const useFacebookLogin = () => {
 
       // 取得使用者登入狀態
       window.FB.getLoginStatus(function (response) {
-        console.log('[refreshLoginStatus]', response);
+        // console.log('[refreshLoginStatus]', response);
         localStorage.setItem(
           'facebookClientToken',
           response?.authResponse?.accessToken
@@ -46,7 +46,7 @@ const useFacebookLogin = () => {
     // 跳出 Facebook 登入的對話框
     window.FB.login(
       function (response) {
-        console.log('handleFBLogin', response);
+        // console.log('handleFBLogin', response);
         setResponse(response);
         localStorage.setItem(
           'facebookClientToken',
@@ -59,7 +59,7 @@ const useFacebookLogin = () => {
 
   const handleFBLogout = () => {
     window.FB.logout(function (response) {
-      console.log('handleFBLogout', response);
+      // console.log('handleFBLogout', response);
       localStorage.setItem(
         'facebookClientToken',
         response?.authResponse?.accessToken
