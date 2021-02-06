@@ -1,11 +1,13 @@
 const baseURL = 'https://todo-mvc.herokuapp.com/api/v1';
 
-export const getTodos = () => {
-  return fetch(`${baseURL}/todos/`, {
+export const getTodos = async () => {
+  const res = await fetch(`${baseURL}/todos/`, {
     headers: {
       'Facebook-Client-Token': localStorage.getItem('facebookClientToken'),
     },
-  }).then((res) => res.json());
+  });
+
+  return res.json();
 };
 
 export const createTodo = async (payload) => {
@@ -33,7 +35,7 @@ export const deleteTodo = async (id) => {
     },
   });
 
-  return await res.json();
+  return res.json();
 };
 
 export const patchTodo = async (payload) => {
@@ -51,5 +53,5 @@ export const patchTodo = async (payload) => {
     }),
   });
 
-  return await res.json();
+  return res.json();
 };

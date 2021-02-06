@@ -18,98 +18,119 @@ const TodoApp = () => {
   };
 
   const handleAddTodo = async () => {
-    if (inputValue.length === 0) {
-      return;
+    try {
+      if (inputValue.length === 0) {
+        return;
+      }
+
+      const data = await createTodo({
+        title: inputValue,
+        isDone: false,
+      });
+
+      setTodos((prevTodos) => {
+        return [
+          ...prevTodos,
+          {
+            ...data,
+            isEdit: false,
+          },
+        ];
+      });
+
+      setInputValue('');
+    } catch (error) {
+      console.log('[handleAddTodo] createTodo failed: ', error);
     }
-
-    const data = await createTodo({
-      title: inputValue,
-      isDone: false,
-    });
-
-    setTodos((prevTodos) => {
-      return [
-        ...prevTodos,
-        {
-          ...data,
-          isEdit: false,
-        },
-      ];
-    });
-
-    setInputValue('');
   };
 
   const handleKeyPress = async (event) => {
-    if (event.key !== 'Enter') {
-      return;
+    try {
+      if (event.key !== 'Enter') {
+        return;
+      }
+
+      if (inputValue.length === 0) {
+        return;
+      }
+
+      const data = await createTodo({
+        title: inputValue,
+        isDone: false,
+      });
+
+      setTodos((prevTodos) => {
+        return [
+          ...prevTodos,
+          {
+            ...data,
+            isEdit: false,
+          },
+        ];
+      });
+
+      setInputValue('');
+    } catch (error) {
+      console.log('[handleKeyPress] createTodo failed: ', error);
     }
-
-    if (inputValue.length === 0) {
-      return;
-    }
-
-    const data = await createTodo({
-      title: inputValue,
-      isDone: false,
-    });
-
-    setTodos((prevTodos) => {
-      return [
-        ...prevTodos,
-        {
-          ...data,
-          isEdit: false,
-        },
-      ];
-    });
-
-    setInputValue('');
   };
 
   const handleDelete = (id) => async () => {
-    await deleteTodo(id);
-
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+    try {
+      setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+      await deleteTodo(id);
+    } catch (error) {
+      console.log('[handleDelete] deleteTodo failed: ', error);
+    }
   };
 
   const handleToggleIsDone = (id) => async () => {
-    const currentTodo = todos.find((t) => t.id === id);
-    await patchTodo({
-      id,
-      title: currentTodo.title,
-      isDone: !currentTodo.isDone,
-    });
+    try {
+      const currentTodo = todos.find((t) => t.id === id);
 
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) => {
-        if (todo.id !== id) {
-          return todo;
-        } else {
-          return {
-            ...todo,
-            isDone: !todo.isDone,
-          };
-        }
-      })
-    );
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) => {
+          if (todo.id !== id) {
+            return todo;
+          } else {
+            return {
+              ...todo,
+              isDone: !todo.isDone,
+            };
+          }
+        })
+      );
+
+      await patchTodo({
+        id,
+        title: currentTodo.title,
+        isDone: !currentTodo.isDone,
+      });
+    } catch (error) {
+      console.log('[handleToggleIsDone] patchTodo failed: ', error);
+    }
   };
 
   const handleSave = async (payload) => {
-    const { id, title } = payload;
-    await patchTodo({
-      id,
-      title,
-    });
+    try {
+      const { id, title } = payload;
 
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) => {
-        if (todo.id !== id) {
-          return todo;
-        }
-        return { ...todo, title, isEdit: false };
-      })
-    );
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) => {
+          if (todo.id !== id) {
+            return todo;
+          }
+          return { ...todo, title, isEdit: false };
+        })
+      );
+
+      await patchTodo({
+        id,
+        title,
+      });
+    } catch (error) {
+      console.log('[handleSave] patchTodo failed: ', error);
+    }
   };
 
   const updateIsEdit = ({ id, isEdit }) => {
