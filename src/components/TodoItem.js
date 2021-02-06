@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const TodoItem = ({
   todo,
@@ -9,10 +9,18 @@ const TodoItem = ({
   updateIsEdit,
 }) => {
   const [tempTodo, setTempTodo] = useState(todo.title);
+  const inputRef = useRef(null);
 
   const handleChange = (e) => {
     setTempTodo(e.target.value);
   };
+
+  // autofocus when input is in edit mode
+  useEffect(() => {
+    if (todo.isEdit) {
+      inputRef.current.focus();
+    }
+  }, [todo.isEdit]);
 
   const handleKeyDown = (event) => {
     // keyCode 13 一定是 enter，但 enter 的 keyCode 不一定是 13
@@ -56,6 +64,7 @@ const TodoItem = ({
       >
         <span className="task-item-body-text">{todo.title}</span>
         <input
+          ref={inputRef}
           className="task-item-body-input"
           type="text"
           placeholder="新增工作"
